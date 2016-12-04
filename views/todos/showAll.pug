@@ -1,0 +1,39 @@
+extends ../layout
+
+block content
+	h1= title
+
+	- completedData = completed
+	- uncompletedData = uncompleted
+	if TodosLink
+		a(href="/todos"+link)
+			button(type="button")= TodosLink
+	if hasTodos
+		form(method="post", action="/todos")
+			ul
+				each uncompleted in uncompletedData
+					li
+						input(type="checkbox", value=uncompleted.todosId, name="checked")
+						span= " "+uncompleted.message
+						if !hisTodos
+							if uncompleted.toUser
+								span= " (par "+uncompleted.pseudo+", pour "+uncompleted.toUser+")"
+							else
+								span.text-primary= " (par "+uncompleted.pseudo+")"
+				each completed in completedData
+					li
+						input(type="checkbox", value=completed.todosId, name="checked")
+						s.text-muted= " "+completed.message
+						if !hisTodos
+							if completed.toUser
+								span= " completed by " + completed.pseudo + ", for " + completed.toUser + ", the "+completed.completedAt
+							else
+								span= " completed by " + completed.pseudo + ", the "+completed.completedAt
+						else
+							span=" completed the " + completed.completedAt
+			p
+				input(type="submit", value="Finish")
+	else
+		p Add your first todo
+		a(href="/todos/add")
+			button(type="button") Add Todo

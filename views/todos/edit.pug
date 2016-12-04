@@ -1,0 +1,33 @@
+extends ../layout
+
+block content
+	h1= title
+	- warning = warning
+	- listUsers = listUsers
+	- hasTeam = hasTeam
+	if warning
+		p Veuillez remplir le champs message
+	form(method="post", action= action)
+		div
+			label(for="message") Your task :
+			div
+				input(type="text", name="message")
+		if hasTeam
+			div
+				label(for="forTeam") For my team :
+				div
+					div(class="checkbox")
+						label
+							input(type="checkbox", name="forTeam", value="true")
+		if listUsers
+			div
+				label(for="toUser") For user :
+				div
+					select(id="forUser", name="toUser")
+						option
+						each user in listUsers
+							option= user
+
+		div
+			div
+				input(type="submit", value="Register")

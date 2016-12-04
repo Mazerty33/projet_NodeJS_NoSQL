@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+  h1= title
+
+  p User list :
+
+  table(border=1)
+    tr
+      th Pseudo
+      th Password
+      th Prénom
+      th Email
+
+    tr
+      td= user.pseudo
+      td= user.password
+      td= user.firstname
+      td= user.email
+
+  ul.pagination
+    - var nbPage = Math.ceil(count / limit)
+    - for (var i = 0; i < nbPage; i++) {
+      li
+        a(href='/users?limit=' + limit + '&offset=' + (i*limit)) Page #{i + 1}
+    - }

@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+	h1 Connexion
+	- warning = warning
+	if warning
+	- badConn = badConn
+	if badConn
+		p Bad User/password
+
+
+	form(method="post", action="/sessions")
+		div
+				label(for="pseudo") Your pseudo :
+					input(type="text", name="pseudo")
+		div
+				label(for="pwd") Your password :
+					input(type="password", name="pwd")
+		div
+			div
+				input(type="submit", value="Connexion")
+
+	h2
+		a(href="/users/add") Create Account

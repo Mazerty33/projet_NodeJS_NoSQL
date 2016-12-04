@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+	h1 Team available
+	table
+		tr
+			th Name
+			th Created at
+			th Actions
+			th
+		- teamdata = team
+		- histTeam = hisTeam
+		each team in teamdata
+			tr
+				td= team.teamName
+				td= team.createdAt
+				td
+					form(method="post", action= "/teams/"+team.teamId+"?_method=DELETE")
+						.buttons
+						input(type="submit", value="Supprimer")
+				if hisTeam
+					if hisTeam == team.teamId
+						td
+							p Joined !
+					else
+						td
+				else
+					td
+						form(method="post", action= "/teams/"+team.teamId+"?_method=PUT")
+							.buttons
+							input(type="submit", value="Join this team")

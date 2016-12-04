@@ -1,0 +1,57 @@
+extends ../layout
+
+block content
+	- user = user
+	if user
+		h1 Modifie the User
+	else
+		h1 New User
+	- warning = warning
+	if warning
+		p Veuillez remplir tous les champs
+	- taken = taken
+	if taken
+		p Pseudo déjà pris
+	form(method="post", action= action)
+		div
+			label(for="pseudo") Pseudo :
+			div
+				if user
+					input(type="text", name="pseudo", value= user[0].pseudo)
+				else
+					input(type="text", name="pseudo")
+		div
+			label(for="pwd") Password :
+			div
+				if user
+					input(type="password", name="pwd", placeholder="Vide ou nouveau pwd")
+				else
+					input(type="password", name="pwd")
+
+		div
+			label(for="email") Email:
+			div
+				if user
+					input(type="text", name="email", value= user[0].email)
+				else
+					input(type="mail", name="email")
+
+		div
+			label(for="firstname") Firstname :
+			div
+				if user
+					input(type="text", name="firstname", value= user[0].firstname, class="form-control")
+				else
+					input(type="text", name="firstname", class="form-control")
+
+		div
+			label(for="lastname") Lastname :
+			div
+				if user
+					input(type="text", name="lastname", value= user[0].lastname)
+				else
+					input(type="text", name="lastname")
+		div
+			div
+				p
+				input(type="submit", value="Register")

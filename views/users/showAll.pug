@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+	h1 Users in my database
+	table
+		tr
+			th ID
+			th Pseudo
+			th Firstname
+			th Lastname
+			th Team
+			th Actions
+		- usersdata = users
+		each user in usersdata
+			tr
+				td= user.rowid
+				td= user.pseudo
+				td= user.firstname
+				td= user.lastname
+				if user.team
+					td= user.team
+				else
+					td Aucune team
+				td
+					a(href="/users/"+user.rowid)
+						buttons(type="button") View
+	div
+		a(href= precedent)
+			buttons(type="button" disabled= isDisabledReturn) Précédent
+		span= avancement
+		a(href= suivant)
+			buttons(type="button" disabled= isDisabledNext) Suivant
+	br
+	h2
+		a(href="/") Retour

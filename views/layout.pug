@@ -1,0 +1,31 @@
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/css/style.css')
+	body
+	block content
+
+
+
+	body
+
+		a(href="/") Home
+		br
+		a(href="/users/me") My profil
+		br
+		a(href="/users") All users
+		br
+		a(href="/users/add") Add user
+		br
+		a(href="/todos") All todos
+		br
+		a(href="/todos/add") Add todo
+		br
+		a(href="/teams") All teams
+		br
+		a(href="/teams/add") Add teams
+		br
+
+		form( method="post", action= "/sessions?_method=DELETE")
+			input(type="submit", value="Disconect")

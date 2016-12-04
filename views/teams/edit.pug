@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+	h1 New team
+	- warning = warning
+	if warning
+		p Veuillez remplir tous les champs
+	- taken = taken
+	if taken
+		p teamname already taken
+	form(method="post", action= action)
+		div
+			label(for="teamName") Chose one team name :
+			div
+				input(type="text", name="teamName")
+		div.form-group
+			div
+				p
+				input(type="submit", value="Register")

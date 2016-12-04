@@ -1,0 +1,42 @@
+extends ../layout
+
+block content
+	h1 User
+	- user = user
+	- teamName = user[0]['team']
+	table
+		tr
+			th ID
+			td= user[0]['rowid']
+		tr
+			th Pseudo
+			td= user[0]['pseudo']
+		tr
+			th Firstname
+			td= user[0]['firstname']
+		tr
+			th Lastname
+			td= user[0]['lastname']
+		tr
+			th Email
+			td= user[0]['email']
+		tr
+			th Team
+			if teamName
+				td= teamName
+			else
+				td Aucune team
+		tr
+			th Actions
+			td
+				form(method="get", action= modif)
+					p.buttons
+					input(type="submit", value="Modify")
+		tr
+			if notThisOne
+				th
+			if notThisOne
+				td
+					form(method="post", action= suppr)
+						p
+						input(type="submit", value="Supprimer")
